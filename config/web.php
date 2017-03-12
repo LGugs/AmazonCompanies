@@ -61,7 +61,7 @@ $config = [
 	],
     'params' => $params,
 ];
-
+/*
 if (YII_ENV_DEV) { //desativar isso tudo quando concluir tudo!
     // configuration adjustments for 'dev' environment
    // $config['bootstrap'][] = 'debug';
@@ -74,5 +74,5 @@ if (YII_ENV_DEV) { //desativar isso tudo quando concluir tudo!
         'class' => 'yii\gii\Module'
     ];
 }
-
+*/
 return $config;
