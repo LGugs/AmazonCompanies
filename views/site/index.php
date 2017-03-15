@@ -8,7 +8,7 @@ use app\controllers\SiteController;
 
   $this->title = 'Amazon Companies';
   if (Yii::$app->user->getIsGuest()){
-  		$id = Empresa::find()->select('idEmpresa, rand() as rand')->orderBy('rand')->limit(1)->one();
+  		$id = Empresa::find()->select('idEmpresa, random() as rand')->orderBy('rand')->limit(1)->one(); // rand() == MYSQL -  random() == POSTGRESQL
 		if($id)
 			return Yii::$app->response->redirect(['empresa/view', 'id' => $id->idEmpresa]);
 		else{

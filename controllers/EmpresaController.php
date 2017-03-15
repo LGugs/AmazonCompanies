@@ -170,7 +170,7 @@ class EmpresaController extends Controller
         if($verificaPreenchimento==2){
             //mostrar mensagem avisando que não foram cadastrados algumas informações para estava null
         }
-        $categorias=0;
+      //  $categorias=0;
         $contas = Conta::find()->select('*')->all();
         $i=0;
         foreach($contas as $conta){

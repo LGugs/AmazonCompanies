@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
+use app\models\Conta;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ContaSearch */
@@ -74,7 +75,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
             ],
-            'pai',
+            [
+            		'attribute' => 'pai',
+            		'value' => function($model){
+            			if($model->pai == 0){
+            				return 'Não Possui';
+            			}else{
+            				return Conta::getPai($model->pai);
+            			}
+            		},
+            		'filter' => [
+            			'0' => 'Não Possui',
+            			'Pais Existentes:' => Conta::dropdown()
+            		]
+            ],
 
             ['class' => 'kartik\grid\ActionColumn'],
         ],

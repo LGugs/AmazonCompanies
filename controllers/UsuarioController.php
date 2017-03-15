@@ -108,7 +108,7 @@ class UsuarioController extends Controller
         	->send();
         	Usuario::setSenhaMD5($model);
         	//Yii::$app->session->setFlash('success', "");
-        	if($model->identificadorPessoa == 1){ // EDITAR O INDEX PARA NAO PRECISAR FAZER ISSO AQUI!!!! E TERMINAR O RESTANTE DO UPDATE!!
+        	if($model->identificadorPessoa == 1){
         		return $this->redirect(['/site/adm']);
         	}else if($model->identificadorPessoa == 2){
         		return $this->redirect(['/site/aluno']);

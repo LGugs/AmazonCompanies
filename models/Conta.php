@@ -37,8 +37,6 @@ class Conta extends \yii\db\ActiveRecord
             [['nome'], 'string', 'max' => 255],
             [['chave'], 'string', 'max' => 30],
             [['idDemonstracao'], 'exist', 'skipOnError' => true, 'targetClass' => Demonstracao::className(), 'targetAttribute' => ['idDemonstracao' => 'idDemonstracao']],
-            //['idDemonstracao', 'compare', 'compareAttribute'=> $this::find()->select(['idDemonstracao'])->where(['idConta'=='pai']), 'message'=>"pai de demonstração diferente" ],
-            //['idDemonstracao', 'compare', 'compareAttribute'=> $this::find()->select(['idDemonstracao'])->where(['idConta'==[$this::find()->select('idConta'=='pai')]]), 'message'=>"pai de demonstração diferente" ],
         ];
     }
 
@@ -74,9 +72,19 @@ class Conta extends \yii\db\ActiveRecord
     {
         return $this->hasMany(EmpresaConta::className(), ['idConta' => 'idConta']);
     }
-    public function validarDemo(){
-
-        
+    
+    //retorna o nome do pai
+    public function getPai($num){
+    	$query = Conta::find()->where(['idConta' => $num])->one();
+    	return $query->nome;
+    }
+    
+    public static function dropdown(){
+    	$models = static::find()->distinct()->where(['pai' => 0])->all();
+    	foreach ($models as $model){
+    		$dropdown[$model->idConta] = $model->nome;
+    	}
+    	return $dropdown;
     }
 
 }

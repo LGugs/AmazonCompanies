@@ -41,7 +41,7 @@ use app\models\Conta;
 
     <?= $form->field($model, 'formato')->dropDownList(['prompt' => 'Selecione...',1 => 'R$', 2 => 'USD', 3=> '%', 4=>'Absoluto'])->label('Formato')?>
 
-    <?= $form->field($model, 'pai')->dropDownList(['prompt' => ['Selecione...', 0 => null],ArrayHelper::map(Conta::find()->where(['pai'=>null])->all(), 'idConta', 'nome')])->label('Pai')?>
+    <?= $form->field($model, 'pai')->dropDownList(['prompt' => 'Selecione...', 0 => 'Não Possui', ArrayHelper::map(Conta::find()->where(['pai'=>0])->all(), 'idConta', 'nome')])->label('Pai')?>
 
 	
     <div class="form-group">

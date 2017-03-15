@@ -84,14 +84,6 @@ AppAsset::register($this);
             
         ],
     ]);
-    /*FooterBar::begin([
-        'brandLabel' => 'Amazon Companies',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-bottom',
-        ],
-    ]);
-    */
     
     if(Yii::$app->user->getIdentificadorPessoa() == '1'){ //Administrador
         echo Nav::widget([
