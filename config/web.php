@@ -33,12 +33,12 @@ $config = [
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true, // alterar para false para mandar emails de verdade
+            'useFileTransport' => false, // alterar para false para mandar emails de verdade
         		'transport' => [
         				'class' => 'Swift_SmtpTransport',
         				'host' => 'smtp.gmail.com',
-        				'username' => '', // inserir o email que vai mandar os emails
-        				'password' => '', // inserir a senha do email q vai mandar os emails
+        				'username' => 'amazoncompaniesbrazil@gmail.com', // inserir o email que vai mandar os emails
+        				'password' => 'professoradc', // inserir a senha do email q vai mandar os emails
         				'port' => '587',
         				'encryption' => 'tls'
         		]

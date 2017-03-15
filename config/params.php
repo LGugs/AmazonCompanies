@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'adminEmail' => 'andrecosta@ufam.edu.br', // inserir aqui o email do administrador
+    'adminEmail' => 'amazoncompaniesbrazil@gmail.com', // inserir aqui o email do administrador
 ];

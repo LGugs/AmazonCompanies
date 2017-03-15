@@ -72,11 +72,11 @@ class UsuarioController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	Yii::$app->mailer->compose()
-        	->setFrom('lgpa@icomp.ufam.edu.br') // inserir outro e-mail!
+        	->setFrom('amazoncompaniesbrazil@gmail.com') // inserir outro e-mail!
         	->setTo($model->email)
         	->setSubject('Cadastro no AmazonCompanies realizado com sucesso!')
         	//->setTextBody('Plain text content')
-        	->setHtmlBody('<h3><b>Bem vindo Sr(a).' .$model->nome. '</b></h3><br>Você foi cadastrado no site AmazonCompanies. Seu perfil será analisado e validado pelo Administrador do sistema.<br>Qualquer dúvida ou reclamação por favor contate-nos atraves do link: "contato"')
+        	->setHtmlBody('<h3><b>Bem vindo Sr(a). ' .$model->nome. '</b></h3><br>Você foi cadastrado no site AmazonCompanies. Seu perfil será analisado e validado pelo Administrador do sistema.<br>Qualquer dúvida ou reclamação por favor contate-nos atraves do link: <link>https://amazoncompanies.herokuapp.com/web/index.php?r=site%2Fcontact</link>')
         	->send();
         	Usuario::setSenhaMD5($model);
         	Yii::$app->session->setFlash('success', "Aguarde, seu cadastro será validado pelo administador do sistema.");
@@ -100,11 +100,11 @@ class UsuarioController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	Yii::$app->mailer->compose()
-        	->setFrom('lgpa@icomp.ufam.edu.br') // inserir outro e-mail!
+        	->setFrom('amazoncompaniesbrazil@gmail.com') // inserir outro e-mail!
         	->setTo($model->email)
         	->setSubject('Cadastro atualizado com sucesso!')
         	//->setTextBody('Plain text content')
-        	->setHtmlBody('<h3><b>Olá Sr(a).' .$model->nome. '</b></h3><br>Seu cadastro foi atualizado com suceso.<br>Se não foi você, entre em contato com o administrador do sistema.')
+        	->setHtmlBody('<h3><b>Olá Sr(a). ' .$model->nome. '</b></h3><br>Seu cadastro foi atualizado com suceso.<br>Se não foi você, entre em contato com o administrador do sistema.')
         	->send();
         	Usuario::setSenhaMD5($model);
         	//Yii::$app->session->setFlash('success', "");

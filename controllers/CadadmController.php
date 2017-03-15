@@ -65,7 +65,7 @@ class CadadmController extends Controller
 		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	Yii::$app->mailer->compose()
-        	->setFrom('lgpa@icomp.ufam.edu.br') // inserir outro e-mail!
+        	->setFrom('amazoncompaniesbrazil@gmail.com') // inserir outro e-mail!
         	->setTo($model->email)
         	->setSubject('Cadastro no AmazonCompanies realizado com sucesso!')
         	//->setTextBody('Plain text content')
