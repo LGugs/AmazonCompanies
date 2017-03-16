@@ -2,8 +2,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'pgsql:host=ec2-23-21-186-138.compute-1.amazonaws.com;port=5432;dbname=dbutnc00549ktd', // configurado para receber o server do heroku
-    'username' => 'rswdgzbwupxjxh',
-    'password' => 'a757e07d7325913e84e475974e27e681ee57e649c0642d583ffda21f520fa096',
+    'dsn' => 'pgsql:host=ec2-54-163-234-140.compute-1.amazonaws.com;port=5432;dbname=d817i8chsgdjin', // configurado para receber o server do heroku
+    'username' => 'rounbxrhebxljv',
+    'password' => '7164f12d98c810a5e4a672575349ba9730b9332ac68adbdadad845dabae2903e',
     'charset' => 'utf8',
 ];
