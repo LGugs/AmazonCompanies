@@ -81,10 +81,11 @@ class Conta extends \yii\db\ActiveRecord
     
     public static function dropdown(){
     	$models = static::find()->distinct()->where(['pai' => 0])->all();
-    	foreach ($models as $model){
-    		$dropdown[$model->idConta] = $model->nome;
+    	if($models){
+    		foreach ($models as $model){
+    			$dropdown[$model->idConta] = $model->nome;
+    		}
+    		return $dropdown;
     	}
-    	return $dropdown;
     }
-
 }
