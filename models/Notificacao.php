@@ -71,7 +71,7 @@ class Notificacao extends \yii\db\ActiveRecord
         return $this->hasOne(Usuario::className(), ['idUsuario' => 'Usuario_idUsuario']);
     }
     
-    public function getNotification($id){
+    public static function getNotification($id){
     	$query = Notificacao::find()->where(['Usuario_idUsuario' =>$id, 'status' => [0,1,3]])->count();
     	return $query;
     }
