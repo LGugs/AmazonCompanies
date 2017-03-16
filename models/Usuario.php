@@ -99,7 +99,7 @@ class Usuario extends \yii\db\ActiveRecord
     }
     
     // converte a senha basica para uma encriptografada e salva no bd
-    public function setSenhaMD5($model){
+    public static function setSenhaMD5($model){
     	$model->senha = md5($model->senha);
     	$model->repetir_senha = md5($model->repetir_senha);
     	return $model->save();

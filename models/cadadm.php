@@ -96,7 +96,7 @@ class cadadm extends \yii\db\ActiveRecord
     }
     
     // converte a senha basica para uma encriptografada e salva no bd
-    public function setSenhaMD5($model){
+    public static function setSenhaMD5($model){
     	$model->senha = md5($model->senha);
     	return $model->save();
     }
