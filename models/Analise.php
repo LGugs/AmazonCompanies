@@ -74,7 +74,7 @@ class Analise extends \yii\db\ActiveRecord
         return $query;
     }
 
-    public function getNotificacaos()
+    public static function getNotificacaos()
     {
         return $this->hasMany(Notificacao::className(), ['Usuario_idUsuario' => 'idUsuario']);
     }

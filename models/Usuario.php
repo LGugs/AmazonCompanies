@@ -106,7 +106,7 @@ class Usuario extends \yii\db\ActiveRecord
     }
     
     // retorna a quantidade de status pendentes
-    public function getNotification(){
+    public static function getNotification(){
     	$query = Usuario::find()->where(['ativo' => '2'])->count();
     	return $query;
     }

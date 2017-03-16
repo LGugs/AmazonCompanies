@@ -86,7 +86,7 @@ class EmpresaConta extends \yii\db\ActiveRecord
         return $this->hasOne(Usuario::className(), ['idUsuario' => 'idUsuario']);
     }
 
-    public function getNotification(){
+    public static function getNotification(){
         $query = EmpresaConta::find()->where(['statusValidacao' => '2'])->count();
         return $query;
     }
