@@ -69,12 +69,12 @@ class Analise extends \yii\db\ActiveRecord
     }
     
     // retorna a quantidade de status pendentes
-    public function getNotification(){
+    public static function getNotification(){
         $query = Analise::find()->where(['status' => '2'])->count();
         return $query;
     }
 
-    public static function getNotificacaos()
+    public function getNotificacaos()
     {
         return $this->hasMany(Notificacao::className(), ['Usuario_idUsuario' => 'idUsuario']);
     }
