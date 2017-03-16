@@ -74,7 +74,7 @@ class Conta extends \yii\db\ActiveRecord
     }
     
     //retorna o nome do pai
-    public function getPai($num){
+    public static function getPai($num){
     	$query = Conta::find()->where(['idConta' => $num])->one();
     	return $query->nome;
     }
