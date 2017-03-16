@@ -28,7 +28,6 @@
         "moonlandsoft/yii2-phpexcel": "*",
         "PHPOffice/PHPExcel": "1.8.x",
         "fintara/calculator-php": "^0.1.0",
-        "ext-gd": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
