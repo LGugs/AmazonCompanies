@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use app\models\Conta;
+use app\models\Demonstracao;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ContaSearch */
@@ -36,8 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'nome',
         		[
-        			'attribute' => 	'idDemonstracao0.nomeDemonstracao',
-        			'header' => 'Demonstração'
+        			'attribute' => 	'idDemonstracao',
+        			'value' => function($model,$index,$dataColumn){
+        				return Demonstracao::getNome($model->idDemonstracao);
+        			},
+    				'filter' => Demonstracao::dropdown2()
     			],
             
         		[
@@ -72,8 +76,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         return 'Absoluto';
                     }
                 }
-
-
             ],
             [
             		'attribute' => 'pai',

@@ -48,7 +48,7 @@ class Conta extends \yii\db\ActiveRecord
         return [
             'idConta' => 'Id Conta',
             'nome' => 'Nome',
-            'idDemonstracao' => 'Id Demonstracao',
+            'idDemonstracao' => 'Demonstração',
             'chave' => 'Chave',
             'obrigatorio' => 'Obrigatório',
             'ordem' => 'Ordem',

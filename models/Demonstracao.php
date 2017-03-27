@@ -51,4 +51,19 @@ class Demonstracao extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Conta::className(), ['idDemonstracao' => 'idDemonstracao']);
     }
+    
+    public static function getNome($num){
+    	$query = Demonstracao::find()->where(['idDemonstracao' => $num])->one();
+    	return $query->nomeDemonstracao;
+    }
+    
+    public static function dropdown2(){
+    	$models = static::find()->all();
+    	if($models){
+    		foreach ($models as $model){
+    			$dropdown[$model->idDemonstracao] = $model->nomeDemonstracao;
+    		}
+    		return $dropdown;
+    	}
+    }
 }
