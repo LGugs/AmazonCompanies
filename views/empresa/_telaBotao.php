@@ -29,7 +29,7 @@ use kartik\widgets\FileInput;
     <div class="form-group">
         <div class="form-group">
         <?= Html::submitButton('Carregar Dados', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-        
+        <?= Html::a(Yii::t('app', 'Baixar Template'), ['baixar_documento'], ['class' => 'btn btn-default']) ?>
         </h1>
     </div>
     </div>

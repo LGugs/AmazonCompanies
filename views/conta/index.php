@@ -25,9 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php
         }
         ?>
-
-
-        <?= Html::a(Yii::t('app', 'Baixar Template'), ['baixar_documento'], ['class' => 'btn btn-default']) ?>
+        
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
