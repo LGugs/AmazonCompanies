@@ -81,9 +81,9 @@ class ContaController extends Controller
 
         $contas = Conta::find()->all();
 
-        $titulosColunas = ['NOME', 'VALOR', 'ANO'];
+        $titulosColunas = ['Demonstração', 'Nome', 'Valor', 'Ano'];
 
-        $filename = 'templateAmazonCompanies.xls';
+        $filename = 'templateAmazonCompanies.xlsx';
 
         $html='
             <html>
@@ -103,7 +103,7 @@ class ContaController extends Controller
                             $demonstracao=Demonstracao::find()->select("nomeDemonstracao")->where(['idDemonstracao' => $conta->idDemonstracao])->one();
 
                             $html.='<tr>';
-                               // $html.='<td><b>'.$demonstracao->nomeDemonstracao.'</b></td>';
+                               $html.='<td><b>'.$demonstracao->nomeDemonstracao.'</b></td>';
                                 $html.='<td><b>'.$conta->nome.'</b></td>';
                                
                             $html.='</tr>';
@@ -123,7 +123,7 @@ class ContaController extends Controller
         header ("Pragma: no-cache");
         header ("Content-type: application/x-msexcel");
         header ("Content-Disposition: attachment; filename=\"{$filename}\"" );
-        header ("Content-Description: Planilha de Alunos - Sistema PPGI UFAM" );
+        header ("Content-Description: Planilha de Contas - AmazonCompanies" );
         
         // Sends file content to browser
         echo $html;
