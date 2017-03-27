@@ -9,7 +9,7 @@ use app\models\EmpresaSearch;
 use app\models\EmpresaConta;
 use app\models\Conta;
 use app\models\Comentario;
-
+use phpoffice\phpexcel\PHPExcel;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -114,36 +114,45 @@ class EmpresaController extends Controller
             $file->saveAs('uploads/'.$file->name);
         	//print_r($file->name);
         
-        	$objPHPExcel = new Excel();
+        	$objPHPExcel = new \PHPExcel();
         
         	$inputFileName = './uploads/'.$file->name;  // File to read
         
         	try {
-        		$objPHPExcel = Excel::import($inputFileName);
+        		$inputFileType = \PHPExcel_IOFactory::identify($inputFileName);
+        		$objReader = \PHPExcel_IOFactory::createReader($inputFileType);
+        		$objPHPExcel = $objReader->load($inputFileName);
         	} catch(Exception $e) {
         		die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
         	}
         	$cont=1;
-        	$myarray = array_shift($objPHPExcel);
+        	
+        	$sheet = $objPHPExcel->getSheet(0);
+        	$highestRow = $sheet->getHighestDataRow();
+        	$highestColumn = $sheet->getHighestDataColumn();
+        	
+        //	$myarray = array_shift($objPHPExcel);
 
-            Yii::trace("my array");
-            Yii::trace($myarray);
-            Yii::trace(count($myarray));
+       //     Yii::trace("my array");
+      //      Yii::trace($myarray);
+       //     Yii::trace(count($myarray));
 
         	//$idUsuario = Yii::$app->user->getId();
             //Yii::trace($idUsuario);
-        	 for ($i = 0; $i < count($myarray); $i++) {
+        for ($row = 2; $row <= $highestRow; $row++) {
+        	$rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
+        	
         	$model = new EmpresaConta();
         
-        	$nome = $myarray[$i]['Nome'];
+        	$nome = $rowData[0][1]; //nome 
         	$conta = Conta::find()->select("*")->where(['nome' => $nome])->one();
             Yii::trace("id conta");
         	Yii::trace($conta->idConta);
                         Yii::trace("obrigatorio");
 
         
-        	$valor = $myarray[$i]['Valor'];
-        	$ano = $myarray[$i]['Ano'];
+            $valor = $rowData[0][2]; // valor
+            $ano = $rowData[0][3]; // ano
         	$model->idEmpresa = $id;
             $model->idUsuario = 1;
         	$model->ano = $ano;
