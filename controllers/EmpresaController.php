@@ -450,7 +450,7 @@ class EmpresaController extends Controller
     	
     	$titulosColunas = ['Demonstração', 'Nome', 'Valor', 'Ano'];
     	
-    	$filename = 'templateAmazonCompanies.xlsx';
+    	$filename = 'templateAmazonCompanies.xls';
     	
     	$html='
             <html>
