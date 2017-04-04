@@ -32,9 +32,9 @@ class Conta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nome', 'idDemonstracao', 'chave','formato'], 'required'],
+            [['nome', 'idDemonstracao', 'chave','formato', 'codigo'], 'required'],
             [['idDemonstracao', 'obrigatorio', 'ordem','pai','formato'], 'integer'],
-            [['nome'], 'string', 'max' => 255],
+            [['nome', 'codigo'], 'string', 'max' => 255],
             [['chave'], 'string', 'max' => 30],
             [['idDemonstracao'], 'exist', 'skipOnError' => true, 'targetClass' => Demonstracao::className(), 'targetAttribute' => ['idDemonstracao' => 'idDemonstracao']],
         ];
@@ -54,6 +54,7 @@ class Conta extends \yii\db\ActiveRecord
             'ordem' => 'Ordem',
             'pai' => 'Pai',
             'formato'=>'Formato',
+        	'codigo' => 'Código'
         ];
     }
 

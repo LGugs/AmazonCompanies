@@ -145,15 +145,15 @@ class EmpresaController extends Controller
         	
         	$model = new EmpresaConta();
         
-        	$nome = $rowData[0][1]; //nome 
-        	$conta = Conta::find()->select("*")->where(['nome' => $nome])->one();
+        	$codigo = $rowData[0][0]; //nome 
+        	$conta = Conta::find()->select("*")->where(['codigo' => $codigo])->one();
             Yii::trace("id conta");
         	Yii::trace($conta->idConta);
                         Yii::trace("obrigatorio");
 
         
-            $valor = $rowData[0][2]; // valor
-            $ano = $rowData[0][3]; // ano
+            $valor = $rowData[0][3]; // valor
+            $ano = $rowData[0][4]; // ano
         	$model->idEmpresa = $id;
             $model->idUsuario = 1;
         	$model->ano = $ano;
@@ -446,9 +446,12 @@ class EmpresaController extends Controller
 
     public function actionBaixar_documento(){
     	
-    	$contas = Conta::find()->all();
+    	$contas = Conta::find()->orderBy([
+    			'idDemonstracao' => SORT_ASC,
+    			'ordem' => SORT_ASC
+    	])->all();
     	
-    	$titulosColunas = ['Demonstração', 'Nome', 'Valor', 'Ano'];
+    	$titulosColunas = ['Código', 'Demonstração', 'Nome', 'Valor', 'Ano'];
     	
     	$filename = 'templateAmazonCompanies.xls';
     	
@@ -470,8 +473,9 @@ class EmpresaController extends Controller
     		$demonstracao=Demonstracao::find()->select("nomeDemonstracao")->where(['idDemonstracao' => $conta->idDemonstracao])->one();
     		
     		$html.='<tr>';
+    		$html.='<td><b>'.$conta->codigo.'</b></td>';
     		$html.='<td><b>'.$demonstracao->nomeDemonstracao.'</b></td>';
-    		$html.='<td><b>'.$conta->nome.'</b></td>';
+    		$html.='<td>'.$conta->nome.'</td>';
     		
     		$html.='</tr>';
     	}

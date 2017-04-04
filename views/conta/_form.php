@@ -33,6 +33,8 @@ use app\models\Conta;
 
     <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
 
+	<?= $form->field($model, 'codigo')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'idDemonstracao')->dropDownList(ArrayHelper::map(Demonstracao::find()->all(), 'idDemonstracao', 'nomeDemonstracao'))->label('Demonstração')?>
 
 	<?= $form->field($model, 'obrigatorio')->dropDownList(['prompt' => 'Selecione...',1 => 'Sim', 0 => 'Não'])->label('Obrigatório?')?>
@@ -40,7 +42,7 @@ use app\models\Conta;
 	<?= $form->field($model, 'chave')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'formato')->dropDownList(['prompt' => 'Selecione...',1 => 'R$', 2 => 'USD', 3=> '%', 4=>'Absoluto'])->label('Formato')?>
-
+    
     <?= $form->field($model, 'pai')->dropDownList(['prompt' => 'Selecione...', 0 => 'Não Possui', ArrayHelper::map(Conta::find()->where(['pai'=>0])->all(), 'idConta', 'nome')])->label('Pai')?>
 
 	
