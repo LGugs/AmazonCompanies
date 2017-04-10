@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'pgsql:host=ec2-54-225-118-55.compute-1.amazonaws.com;port=5432;dbname=da4sfajgi75tnj', // configurado para receber o server do heroku
-    'username' => 'xtdlbmytgxusqw',
-    'password' => '26d2d232a902a137eb702244a5aeb6111a207db76f7dc9f100787440deff88c4',
+    'dsn' => 'pgsql:host=ec2-107-20-255-96.compute-1.amazonaws.com;port=5432;dbname=d5hh0fo0enq9ir', // configurado para receber o server do heroku
+    'username' => 'akbsvknhyauacd',
+    'password' => 'b9318897098d9040f063eeab2613f9a26724153fc0839c0d52727722fd076835',
     'charset' => 'utf8',
 ];
 
