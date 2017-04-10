@@ -448,7 +448,7 @@ class EmpresaController extends Controller
     	
     	$contas = Conta::find()->orderBy([
     			'idDemonstracao' => SORT_ASC,
-    			'ordem' => SORT_ASC
+    			'codigo' => SORT_ASC
     	])->all();
     	
     	$titulosColunas = ['Código', 'Demonstração', 'Nome', 'Valor', 'Ano'];

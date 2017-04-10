@@ -5,8 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Conta;
 use app\models\ContaSearch;
-use app\models\Demonstracao;
-use app\models\DemonstracaoSearch;
+use yii\helpers\Json;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -40,6 +39,26 @@ class ContaController extends Controller
     {
         $searchModel = new ContaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        if(Yii::$app->request->post('hasEditable')){
+        	
+        	$id = Yii::$app->request->post('editableKey');
+        	$model = Conta::findOne($id);
+        	
+        	$out = Json::encode(['output' => '', 'message' => '']);
+        	
+        	$posted = current($_POST['Conta']);
+        	$post = ['Conta' => $posted];
+        	
+        	if($model->load($post)){
+        		$model->save();
+        		$output = '';
+        		$out = Json::encode(['output' => $output, 'message' => '']);
+        	}
+        	echo $out;
+        	return;
+
+        }
 
         return $this->render('index', [
             'searchModel' => $searchModel,

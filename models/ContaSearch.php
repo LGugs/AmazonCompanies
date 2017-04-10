@@ -44,7 +44,7 @@ class ContaSearch extends Conta
     {
         $query = Conta::find()->orderBy([
             'idDemonstracao' => SORT_ASC,
-            'ordem' => SORT_ASC
+            'codigo' => SORT_ASC
         ]);
 
         // add conditions that should always apply here
@@ -68,10 +68,9 @@ class ContaSearch extends Conta
         	'obrigatorio' => $this->obrigatorio,
             'pai'=> $this->pai,
             'formato'=>$this->formato,
-        	'codigo' =>$this->codigo
         ]);
 
-        $query->andFilterWhere(['like', 'nome', $this->nome])->andFilterWhere(['like', 'chave', $this->chave]);
+        $query->andFilterWhere(['like', 'nome', $this->nome])->andFilterWhere(['like', 'chave', $this->chave])->andFilterWhere(['like', 'codigo', $this->codigo]);
 
         return $dataProvider;
     }

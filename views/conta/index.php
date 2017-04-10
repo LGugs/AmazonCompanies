@@ -4,6 +4,9 @@ use yii\helpers\Html;
 use kartik\grid\GridView;
 use app\models\Conta;
 use app\models\Demonstracao;
+use yii\widgets\MaskedInput;
+use yii\base\Widget;
+use kartik\editable\Editable;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ContaSearch */
@@ -30,9 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+    	'pjax' => true,
         'columns' => [
-            'ordem',
+          //  'ordem',
 			//'codigo',
+			[
+					'class' => 'kartik\grid\EditableColumn',
+					'attribute' => 'codigo'
+			],
             'nome',
         		[
         			'attribute' => 	'idDemonstracao',
