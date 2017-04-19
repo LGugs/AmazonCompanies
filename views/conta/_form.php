@@ -34,7 +34,7 @@ use yii\widgets\MaskedInput;
      <br>
 
 	<?= $form->field($model, 'codigo')->widget(MaskedInput::className(), [
-			'mask' => ['99', '99.99', '99.99.99', '99.99.99.99', '99.99.99.99.99', '99.99.99.99.99.99']
+			'mask' => ['9', '9.99', '9.99.99', '9.99.99.99', '9.99.99.99.99', '9.99.99.99.99.99']
 	]) ?>
 
     <?= $form->field($model, 'nome')->textInput(['maxlength' => true]) ?>
