@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Indice */
 
-$this->title = Yii::t('app', 'Update {modelClass}: ', [
+$this->title = Yii::t('app', 'Atualizar {modelClass}: ', [
     'modelClass' => 'Indice',
-]) . $model->idIndice;
+]) . $model->nomeIndice;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Indices'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->idIndice, 'url' => ['view', 'id' => $model->idIndice]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
@@ -17,7 +17,10 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
-        'model' => $model,
+    	'ContaSearchModel' => $ContaSearchModel,
+    	'ContaDataProvider' => $ContaDataProvider,
+    	'conta' => $conta,
+        'model' => $model
     ]) ?>
 
 </div>

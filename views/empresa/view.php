@@ -157,36 +157,35 @@ use yii\base\Widget;
 
                                                             switch ($tipo) {
                                                                     case 1:
-                                                                        echo "<td align='right'>R$ ". number_format($valores->valor, 0, ',','.'). " " . $textoAnterior . "</td>";
+                                                                        echo "<td align='left'>R$ ". number_format($valores->valor, 0, ',','.'). " " . $textoAnterior . "</td>";
                                                                         break;
                                                                     case 2:
-                                                                        echo "<td align='right'>US$ ". number_format($valores->valor, 0, ',','.'). " " . $textoAnterior . "</td>";
+                                                                        echo "<td align='left'>US$ ". number_format($valores->valor, 0, ',','.'). " " . $textoAnterior . "</td>";
                                                                         break;
                                                                     case 3:
-                                                                        echo "<td align='right'>". number_format(100* $valores->valor, 0, ',','.'). "% " . $textoAnterior . "</td>";
+                                                                        echo "<td align='left'>". number_format(100* $valores->valor, 0, ',','.'). "% " . $textoAnterior . "</td>";
                                                                         break;
                                                                     case 4:
-                                                                        echo "<td align='right'>". number_format($valores->valor, 0, ',','.'). " " . $textoAnterior . "</td>";
+                                                                        echo "<td align='left'>". number_format($valores->valor, 0, ',','.'). " " . $textoAnterior . "</td>";
                                                                         break;
                                                                 }
 
-                                                                    if ($conta->pai == 0){
+                                                                    if ($conta->pai === 0){
                                                                         $pais[$conta->idConta][$anosEmpresa->ano] = $valores->valor;
-                                                                        echo "<td align='right'>100%</td>";
+                                                                        echo "<td align='left'>100%</td>";
                                                                     }
                                                                     else{
-
                                                                         if(array_key_exists($anosEmpresa->ano, $pais[$conta->pai])) 
-                                                                           echo "<td align='right'>".number_format(100*$valores->valor / $pais[$conta->pai][$anosEmpresa->ano],0,',','.')."%</td>";
-                                                                       else echo "<td align='right'>0%</td>";
+                                                                           echo "<td align='left'>".number_format(100*$valores->valor / $pais[$conta->pai][$anosEmpresa->ano],0,',','.')."%</td>";
+                                                                       else echo "<td align='left'>0%</td>";
                                                                         
                                                                     }
                                                             $anterior = $valores->valor;
                                                         }
 
                                                    } else{ ?>             
-                                                   <td align='right'>-----</td>
-                                                   <td align='right'>-----</td>   
+                                                   <td align='left'>-----</td>
+                                                   <td align='left'>-----</td>   
                                                    <?php
                                                 }  
                                             }  
@@ -271,7 +270,7 @@ use yii\base\Widget;
 
                          
                     ?>
-                        <li><a data-toggle="tab" href="#Indice<?=$tipoIndice->idTipo_indice?>"><?=$tipoIndice->nome?></a></li>
+                        <li><a data-toggle="tab" href="#Indice<?=$tipoIndice->idTipo_Indice?>"><?=$tipoIndice->nome?></a></li>
                         
                         <?php
                         }   
@@ -292,7 +291,7 @@ use yii\base\Widget;
                          
                     ?>
 
-                        <div id="Indice<?=$tipoIndice->idTipo_indice?>" class="tab-pane fade">
+                        <div id="Indice<?=$tipoIndice->idTipo_Indice?>" class="tab-pane fade">
                             <div class="container">            
                                 <table class="table table-hover">
                                     <thead>
@@ -316,7 +315,7 @@ use yii\base\Widget;
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $indices = Indice::find()->select('*')->where(['idTipo_indice' => $tipoIndice->idTipo_indice])->all();
+                                            $indices = Indice::find()->select('*')->where(['idTipo_Indice' => $tipoIndice->idTipo_Indice])->all();
 
                                                  $sinais = ['+', '-', '/', '*', '(', ')'];
                                                     $calculator = new Calculator();

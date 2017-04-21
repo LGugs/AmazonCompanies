@@ -20,19 +20,11 @@ use kartik\widgets\Select2;
 <div class="indice-form">
 
     <?php
-        $indices = TipoIndice::find()->select('*')->all();
-        $i=1;
-        foreach ($indices as $indice) {
-            $field[$i] = $indice->nome;
-            $i++;
-        }
-    ?>
-
-    <?php $form = ActiveForm::begin(); ?>
+    $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'nomeIndice')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'idTipo_Indice')->dropdownList($field)->label('Tipo do Índice:')?>
+    <?= $form->field($model, 'idTipo_Indice')->dropDownList(ArrayHelper::map(TipoIndice::find()->asArray()->all(), 'idTipo_Indice', 'nome'))->label('Tipo do Índice:')?>
 
     <?= $form->field($model, 'formula')->textInput(['maxlength' => true]) ?>
 

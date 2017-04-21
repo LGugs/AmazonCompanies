@@ -7,9 +7,9 @@ use yii\helpers\Html;
 
 $this->title = Yii::t('app', 'Alterar {modelClass}: ', [
     'modelClass' => 'Tipo Indice',
-]) . $model->idTipo_indice;
+]) . $model->idTipo_Indice;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Tipo Indices'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->idTipo_indice, 'url' => ['view', 'id' => $model->idTipo_indice]];
+$this->params['breadcrumbs'][] = ['label' => $model->idTipo_Indice, 'url' => ['view', 'id' => $model->idTipo_Indice]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="tipo-indice-update">

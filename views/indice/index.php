@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
+use app\models\TipoIndice;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\IndiceSearch */
@@ -24,22 +25,32 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'kartik\grid\SerialColumn'],
-            'nomeIndice',
-            //'formula',
+            [
+            		'attribute' => 'nomeIndice',
+            		'label' => 'Nome do Índice'
+            ],
             [
                 'attribute' => 'formula',
                 'format' => 'html',
-                //'title' => 'formula',
                 'value' => function ($data) {
                     return Html::img(Yii::getAlias('@web').'/img/calcuworld.png',
                         ['width' => '30px', 'title' => str_replace("@", "", $data->formula)] );
-
-
                 },
             ],
-            'idTipoIndice.nome',
-            'idTipoIndice.descricao',
-            ['attribute'=>'formato',
+            
+            [
+            		'attribute' => 	'idTipoIndice',
+            		'label' => 'Tipo do Índice',
+            		'value' => function($model,$index,$dataColumn){
+            			return TipoIndice::getNome($model->idTipo_Indice);
+                	},
+                	
+                	'filter' => TipoIndice::dropdown()
+                ],
+            
+            
+            [
+            	'attribute'=>'formato',
                 'value'=> function($model, $index, $dataColumn){
                     if($model->formato=='1'){
                         return 'R$';
@@ -53,7 +64,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     else {
                         return 'Absoluto';
                     }
-                }
+                },
+                'filter' => [
+                		'1' => 'R$',
+                		'2' => 'USD',
+                		'3' => '%',
+                		'4' => 'Absoluto'
+                ]
 
 
             ],

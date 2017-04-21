@@ -8,16 +8,14 @@ use app\models\IndiceSearch;
 use app\models\Conta;
 use app\models\ContaSearch;
 use app\models\EmpresaConta;
+use app\models\TipoIndice;
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use \Fintara\Tools\Calculator\Calculator;
-use \Fintara\Tools\Calculator\DefaultLexer;
 use miloschuman\highcharts\Highcharts;
-use yii\bootstrap\Html;
-use yii\bootstrap\ActiveForm;
-use phpnt\bootstrapSelect\BootstrapSelectAsset;
+
 
 /**
  * IndiceController implements the CRUD actions for Indice model.
@@ -45,13 +43,18 @@ class IndiceController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new IndiceSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    	$cont = TipoIndice::find()->select("*")->count(); // verifica se existe algum tipo de indice cadastrado
+    	if($cont > 0){
+        	$searchModel = new IndiceSearch();
+        	$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        	return $this->render('index', [
+            	'searchModel' => $searchModel,
+            	'dataProvider' => $dataProvider,
+        	]);
+    	}else{
+    		return $this->render('semTipo');
+    	}
     }
 
     /**
@@ -104,13 +107,20 @@ class IndiceController extends Controller
      */
     public function actionUpdate($id)
     {
+    	$ContaSearchModel = new ContaSearch();
+    	$ContaDataProvider = $ContaSearchModel->search(Yii::$app->request->queryParams);
+    	
+    	$conta = Conta::find()->select("*")->all();
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idIndice]);
         } else {
             return $this->render('update', [
-                'model' => $model,
+            	'ContaDataProvider' => $ContaDataProvider,
+            	'ContaSearchModel' => $ContaSearchModel,
+            	'conta' => $conta,
+                'model' => $model
             ]);
         }
     }

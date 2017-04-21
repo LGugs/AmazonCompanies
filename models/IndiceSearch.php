@@ -17,10 +17,10 @@ class IndiceSearch extends Indice
      */
     public function rules()
     {
-        return [
-            [['idIndice', 'idTipo_Indice','formato'], 'integer'],
-            [['formula'], 'safe'],
-        ];
+    	return [
+    			[['idIndice', 'idTipo_Indice', 'formato'], 'integer'],
+    			[['formula', 'nomeIndice'], 'safe'],
+    	];
     }
 
     /**
@@ -59,13 +59,14 @@ class IndiceSearch extends Indice
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idIndice' => $this->idIndice,
-            'idTipo_Indice' => $this->idTipo_Indice,
-            'formato'=>$this->formato,
+        		'idIndice' => $this->idIndice,
+        		'idTipo_Indice' => $this->idTipo_Indice,
+        		'formato' => $this->formato,
         ]);
-
-        $query->andFilterWhere(['like', 'formula', $this->formula]);
-
+        
+        $query->andFilterWhere(['like', 'formula', $this->formula])
+        ->andFilterWhere(['like', 'nomeIndice', $this->nomeIndice]);
+        
         return $dataProvider;
     }
 }

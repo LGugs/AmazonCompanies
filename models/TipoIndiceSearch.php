@@ -18,7 +18,7 @@ class TipoIndiceSearch extends TipoIndice
     public function rules()
     {
         return [
-            [['idTipo_indice'], 'integer'],
+            [['idTipo_Indice'], 'integer'],
             [['nome'], 'safe'],
         ];
     }
@@ -59,7 +59,7 @@ class TipoIndiceSearch extends TipoIndice
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idTipo_indice' => $this->idTipo_indice,
+            'idTipo_Indice' => $this->idTipo_Indice,
         ]);
 
         $query->andFilterWhere(['like', 'nome', $this->nome]);

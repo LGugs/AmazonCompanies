@@ -147,9 +147,9 @@ class EmpresaController extends Controller
         
         	$codigo = $rowData[0][0]; //nome 
         	$conta = Conta::find()->select("*")->where(['codigo' => $codigo])->one();
-            Yii::trace("id conta");
-        	Yii::trace($conta->idConta);
-                        Yii::trace("obrigatorio");
+            //Yii::trace("id conta");
+        	//Yii::trace($conta->idConta);
+                 //       Yii::trace("obrigatorio");
 
         
             $valor = $rowData[0][3]; // valor
