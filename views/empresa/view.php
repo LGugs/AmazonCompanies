@@ -69,7 +69,7 @@ use yii\base\Widget;
 <div class="body-content">
     <ul class="nav nav-tabs">
     <?php
-                        $demonstracoes = Demonstracao::find()->select('*')->all();
+                        $demonstracoes = Demonstracao::find()->select('*')->orderBy(['ordem' => SORT_ASC])->all();
 
                         foreach($demonstracoes as $demonstracao){
      
@@ -110,11 +110,14 @@ use yii\base\Widget;
                                             $anosEmpresas = EmpresaConta::find()->select('ano')->distinct()->orderBy(["ano"=> SORT_ASC])->where(['idEmpresa' => $model->idEmpresa])->all();
                                                  $tweets = [['nome'=>'Liquidez', 'id'=>100]];
  
-                                                foreach($anosEmpresas as $anosEmpresa){  
+                                                foreach($anosEmpresas as $anosEmpresa){
+                                                
                                              ?>
                             <th align='center'><?=$anosEmpresa->ano?></th>
+                            <?php	if($demonstracao->contapai > 0){ ?>
                             <th align='center'>AV (<?=$anosEmpresa->ano?>)</th>
                             <?php
+                                                	}
                                                 }   
                                              ?>
                         </tr>
@@ -170,15 +173,19 @@ use yii\base\Widget;
                                                                         break;
                                                                 }
 
-                                                                    if ($conta->pai === 0){
+                                                                    if ($conta->pai === true){
                                                                         $pais[$conta->idConta][$anosEmpresa->ano] = $valores->valor;
                                                                         echo "<td align='left'>100%</td>";
                                                                     }
                                                                     else{
-                                                                        if(array_key_exists($anosEmpresa->ano, $pais[$conta->pai])) 
-                                                                           echo "<td align='left'>".number_format(100*$valores->valor / $pais[$conta->pai][$anosEmpresa->ano],0,',','.')."%</td>";
-                                                                       else echo "<td align='left'>0%</td>";
-                                                                        
+                                                                    	$demo = Demonstracao::find()->where(['idDemonstracao' => $conta->idDemonstracao])->one();
+                                                                    	if($demo->contapai > 0){
+                                                                    		if(array_key_exists($anosEmpresa->ano, $pais[$demo->contapai]))
+                                                                    			echo "<td align='left'>".number_format(100*$valores->valor / $pais[$demo->contapai][$anosEmpresa->ano],0,',','.')."%</td>";
+                                                                    		else
+                                                         	echo "<td align='left'>0%</td>";
+                                                                    	}
+                                                                         
                                                                     }
                                                             $anterior = $valores->valor;
                                                         }
