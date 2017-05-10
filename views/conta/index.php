@@ -83,6 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                 }
             ],
+            /*
             [
             		'attribute' => 'pai',
             		'value' => function($model){
@@ -97,7 +98,7 @@ $this->params['breadcrumbs'][] = $this->title;
             			'Pais Existentes:' => Conta::dropdown()
             		]
             ],
-
+			*/
             ['class' => 'kartik\grid\ActionColumn'],
         ],
     ]); ?>

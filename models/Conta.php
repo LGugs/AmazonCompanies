@@ -33,7 +33,7 @@ class Conta extends \yii\db\ActiveRecord
     {
         return [
             [['nome', 'idDemonstracao', 'chave','formato', 'codigo'], 'required'],
-            [['idDemonstracao', 'obrigatorio','pai','formato'], 'integer'],
+            [['idDemonstracao', 'obrigatorio', 'formato'], 'integer'],
             [['nome', 'codigo'], 'string', 'max' => 255],
             [['chave'], 'string', 'max' => 30],
             [['idDemonstracao'], 'exist', 'skipOnError' => true, 'targetClass' => Demonstracao::className(), 'targetAttribute' => ['idDemonstracao' => 'idDemonstracao']],
@@ -51,7 +51,6 @@ class Conta extends \yii\db\ActiveRecord
             'idDemonstracao' => 'Demonstração',
             'chave' => 'Chave',
             'obrigatorio' => 'Obrigatório',
-            'pai' => 'Pai',
             'formato'=>'Formato',
         	'codigo' => 'Código'
         ];
@@ -73,6 +72,12 @@ class Conta extends \yii\db\ActiveRecord
         return $this->hasMany(EmpresaConta::className(), ['idConta' => 'idConta']);
     }
     
+    public static function getpai($num){
+    	$query = Conta::find()->select('nome')->where(['idConta' => $num]);
+    	return $query->nome;
+    }
+    
+    /*
     //retorna o nome do pai
     public static function getPai($num){
     	$query = Conta::find()->where(['idConta' => $num])->one();
@@ -88,4 +93,5 @@ class Conta extends \yii\db\ActiveRecord
     		return $dropdown;
     	}
     }
+    */
 }

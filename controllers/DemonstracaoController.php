@@ -8,6 +8,7 @@ use app\models\DemonstracaoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Conta;
 
 /**
  * DemonstracaoController implements the CRUD actions for Demonstracao model.
@@ -66,6 +67,11 @@ class DemonstracaoController extends Controller
         $model = new Demonstracao();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        	if($model->contapai > 0){
+        		$conta = Conta::find()->where(['idConta' => $model->contapai])->one();
+        		$conta->pai = true;
+        		$conta->save();
+        	}
             return $this->redirect(['view', 'id' => $model->idDemonstracao]);
         } else {
             return $this->render('create', [
@@ -83,8 +89,18 @@ class DemonstracaoController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if($model->contapai > 0){ // a conta vai deixar de ser pai
+        	$conta = Conta::find()->where(['idConta' => $model->contapai])->one();
+        	$conta->pai = false;
+        	$conta->save();
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        	if($model->contapai > 0){ // a conta virará pai
+        		$conta = Conta::find()->where(['idConta' => $model->contapai])->one();
+        		$conta->pai = true;
+        		$conta->save();
+        	}
             return $this->redirect(['view', 'id' => $model->idDemonstracao]);
         } else {
             return $this->render('update', [

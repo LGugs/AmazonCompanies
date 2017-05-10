@@ -18,7 +18,7 @@ class DemonstracaoSearch extends Demonstracao
     public function rules()
     {
         return [
-            [['idDemonstracao'], 'integer'],
+            [['idDemonstracao', 'ordem'], 'integer'],
             [['nomeDemonstracao'], 'safe'],
         ];
     }
@@ -41,7 +41,9 @@ class DemonstracaoSearch extends Demonstracao
      */
     public function search($params)
     {
-        $query = Demonstracao::find();
+        $query = Demonstracao::find()->orderBy([
+        		'ordem' => SORT_ASC
+        ]);
 
         // add conditions that should always apply here
 
@@ -60,6 +62,7 @@ class DemonstracaoSearch extends Demonstracao
         // grid filtering conditions
         $query->andFilterWhere([
             'idDemonstracao' => $this->idDemonstracao,
+        	'ordem' => $this->ordem
         ]);
 
         $query->andFilterWhere(['like', 'nomeDemonstracao', $this->nomeDemonstracao]);

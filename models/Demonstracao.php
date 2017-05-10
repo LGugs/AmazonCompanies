@@ -3,12 +3,14 @@
 namespace app\models;
 
 use Yii;
+use app\models\Conta;
 
 /**
  * This is the model class for table "demonstracao".
  *
  * @property integer $idDemonstracao
  * @property string $nomeDemonstracao
+ * @property integer $contapai
  *
  * @property Conta[] $contas
  */
@@ -29,7 +31,8 @@ class Demonstracao extends \yii\db\ActiveRecord
     {
         return [
             [['nomeDemonstracao'], 'required'],
-            [['nomeDemonstracao'], 'string', 'max' => 100],
+            [['contapai', 'ordem'], 'integer'],
+            [['nomeDemonstracao'], 'string', 'max' => 255],
         ];
     }
 
@@ -39,8 +42,10 @@ class Demonstracao extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idDemonstracao' => 'Id Demonstração',
-            'nomeDemonstracao' => 'Nome Demonstração',
+            'idDemonstracao' => Yii::t('app', 'Id Demonstracao'),
+            'nomeDemonstracao' => Yii::t('app', 'Nome da Demonstração'),
+            'contapai' => Yii::t('app', 'Conta Pai'),
+        	'ordem' => Yii::t('app', 'Ordem'),
         ];
     }
 
@@ -55,6 +60,16 @@ class Demonstracao extends \yii\db\ActiveRecord
     public static function getNome($num){
     	$query = Demonstracao::find()->where(['idDemonstracao' => $num])->one();
     	return $query->nomeDemonstracao;
+    }
+    
+    //retorna o nome da Conta Pai
+    public static function getNomeContaPai($num){
+    	if($num == 0){
+    		return 'Não Possui';
+    	}else{
+    		$query = Conta::find()->where(['idConta' => $num])->one();
+    		return $query->nome;
+    	}
     }
     
     public static function dropdown2(){

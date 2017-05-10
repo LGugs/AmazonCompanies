@@ -145,7 +145,7 @@ class EmpresaController extends Controller
         	
         	$model = new EmpresaConta();
         
-        	$codigo = $rowData[0][0]; //nome 
+        	$codigo = $rowData[0][1]; //codigo
         	$conta = Conta::find()->select("*")->where(['codigo' => $codigo])->one();
             //Yii::trace("id conta");
         	//Yii::trace($conta->idConta);
@@ -447,11 +447,11 @@ class EmpresaController extends Controller
     public function actionBaixar_documento(){
     	
     	$contas = Conta::find()->orderBy([
+    			'codigo' => SORT_ASC,
     			'idDemonstracao' => SORT_ASC,
-    			'codigo' => SORT_ASC
     	])->all();
     	
-    	$titulosColunas = ['Código', 'Demonstração', 'Nome', 'Valor', 'Ano'];
+    	$titulosColunas = ['Demonstração', 'Código', 'Nome', 'Valor', 'Ano'];
     	
     	$filename = 'templateAmazonCompanies.xls';
     	
@@ -473,8 +473,8 @@ class EmpresaController extends Controller
     		$demonstracao=Demonstracao::find()->select("nomeDemonstracao")->where(['idDemonstracao' => $conta->idDemonstracao])->one();
     		
     		$html.='<tr>';
-    		$html.='<td><b>'.$conta->codigo.'</b></td>';
     		$html.='<td><b>'.$demonstracao->nomeDemonstracao.'</b></td>';
+    		$html.='<td><b>'.$conta->codigo.'</b></td>';
     		$html.='<td>'.$conta->nome.'</td>';
     		
     		$html.='</tr>';

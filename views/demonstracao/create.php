@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Demonstracao */
 
 $this->title = Yii::t('app', 'Criar Demonstração');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Demonstracaos'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Demonstrações'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="demonstracao-criar">

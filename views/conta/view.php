@@ -31,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'idConta',
             'nome',
             'idDemonstracao0.nomeDemonstracao',
-            'pai',
             'formato',
 			'codigo'
 

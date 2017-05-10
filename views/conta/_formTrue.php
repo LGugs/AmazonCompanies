@@ -45,7 +45,7 @@ use yii\widgets\MaskedInput;
 	
 	<?= $form->field($model, 'chave')->textInput(['maxlength' => true]) ?>
 	
-	<?= $form->field($model, 'pai')->hiddenInput(['value'=> false])->label(false) ?>
+	<?= $form->field($model, 'pai')->hiddenInput(['value'=> true])->label(false) ?>
 
     <?= $form->field($model, 'formato')->dropDownList(['prompt' => 'Selecione...',1 => 'R$', 2 => 'USD', 3=> '%', 4=>'Absoluto'])->label('Formato')?>
 	

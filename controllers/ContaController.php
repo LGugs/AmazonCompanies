@@ -6,7 +6,7 @@ use Yii;
 use app\models\Conta;
 use app\models\ContaSearch;
 use yii\helpers\Json;
-
+use app\models\Demonstracao;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -110,14 +110,23 @@ class ContaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idConta]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
+		if($model->pai == true){
+			if ($model->load(Yii::$app->request->post()) && $model->save()) {
+				return $this->redirect(['view', 'id' => $model->idConta]);
+			} else {
+				return $this->render('updateTrue', [
+						'model' => $model,
+				]);
+			}
+		}else{
+        	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            	return $this->redirect(['view', 'id' => $model->idConta]);
+        	} else {
+            	return $this->render('update', [
+                	'model' => $model,
+            	]);
+        	}
+		}
     }
 
     /**
@@ -148,4 +157,25 @@ class ContaController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    /*
+    // form com dependencias!!
+    public function actionDepender(){
+    	$out = [];
+    	if(isset($_POST['depdrop_parents'])){
+    		$parents = $_POST['depdrop_parents'];
+    		if($parents != null){
+    			$demo = $parents[0];
+    			$out = self::getSubCatList($cat_id);
+    			echo Json::encode(['output' => $out, 'selected' => '']);
+    			return;
+    		}
+    	}
+    	echo Json::encode(['output' => '', 'selected'=>'']);
+    }
+    
+    public function getSubCatList($id){
+    	$temp = Demonstracao::find()->where(['idDemonstracao' => $id])->one();
+    	if($temp->nomeDemonstracao == )
+    }
+    */
 }

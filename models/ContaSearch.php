@@ -43,8 +43,8 @@ class ContaSearch extends Conta
     public function search($params)
     {
         $query = Conta::find()->orderBy([
-            'idDemonstracao' => SORT_ASC,
-            'codigo' => SORT_ASC
+        		'codigo' => SORT_ASC,
+        		'pai' => SORT_ASC,
         ]);
 
         // add conditions that should always apply here

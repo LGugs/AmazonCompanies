@@ -2,11 +2,12 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Conta;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Demonstracao */
 
-$this->title = $model->idDemonstracao;
+$this->title = $model->nomeDemonstracao;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Demonstrações'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,8 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-
+        		'ordem',
             'nomeDemonstracao',
+        		[
+        				'label' => 'Conta Pai',
+        				'value'=> $model->getNomeContaPai($model->contapai)
+        		],
         ],
     ]) ?>
 

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
+use app\models\Demonstracao;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\DemonstracaoSearch */
@@ -24,9 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-
+        	'ordem',
             'nomeDemonstracao',
-
+        	[
+        		'attribute' => 	'contapai',
+        		'value' => function($model,$index,$dataColumn){
+        			return Demonstracao::getNomeContaPai($model->contapai);
+    			}
+    		],
             ['class' => 'kartik\grid\ActionColumn'],
         ],
     ]); ?>
