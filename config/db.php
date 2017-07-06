@@ -8,6 +8,7 @@ return [
     'charset' => 'utf8',
 ];
 
+
 /*
 return [
 		'class' => 'yii\db\Connection',
